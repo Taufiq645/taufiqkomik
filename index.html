@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TAUFIQ KOMIK</title>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#0f0f17;--sf:#16161f;--sf2:#1e1e2e;--ac:#ff3860;--yl:#ffd60a;--bl:#00b4d8;--tx:#e8e8f0;--mu:#7878a0;--br:#2a2a3e}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Comic Neue',cursive;background:var(--bg);color:var(--tx);min-height:100vh}
+  ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--ac)}
+  header{background:rgba(13,13,20,.97);border-bottom:3px solid var(--ac);position:sticky;top:0;z-index:500}
+  .hi{max-width:1280px;margin:0 auto;display:flex;align-items:center;gap:12px;padding:10px 20px;flex-wrap:wrap}
+  .logo{font-family:'Bangers',cursive;font-size:1.8rem;color:var(--yl);letter-spacing:3px;text-shadow:3px 3px 0 var(--ac);cursor:pointer;line-height:1;flex-shrink:0}
+  .logo small{font-size:.46rem;color:var(--mu);letter-spacing:2px;display:block;font-family:'Comic Neue',cursive}
+  .sw{flex:1;min-width:180px;max-width:450px;display:flex}
+  .sw input{flex:1;padding:8px 13px;background:var(--sf2);border:2px solid var(--br);border-right:none;color:var(--tx);font-family:'Comic Neue',cursive;font-size:.9rem;outline:none}
+  .sw input:focus{border-color:var(--ac)}.sw input::placeholder{color:var(--mu)}
+  .sw button{background:var(--ac);border:2px solid var(--ac);color:#fff;padding:0 16px;font-size:1rem;cursor:pointer;font-weight:700}
+  .sw button:hover{background:#cc2244}
+  nav{display:flex;gap:6px}
+  .nb{background:transparent;border:2px solid var(--br);color:var(--mu);padding:5px 12px;font-family:'Bangers',cursive;font-size:.9rem;letter-spacing:1px;cursor:pointer;transition:.15s}
+  .nb:hover,.nb.on{background:var(--yl);color:#0d0d0d;border-color:var(--yl);box-shadow:2px 2px 0 var(--ac)}
+  .hero{background:linear-gradient(135deg,#0d0d1f,#1a0a2e 50%,#0a1628);padding:34px 20px 26px;text-align:center;position:relative;overflow:hidden;border-bottom:2px solid var(--br)}
+  .hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(0,180,216,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(0,180,216,.05) 1px,transparent 1px);background-size:40px 40px}
+  .ht{font-family:'Bangers',cursive;font-size:clamp(1.8rem,5vw,3.3rem);color:#fff;letter-spacing:4px;position:relative;text-shadow:0 0 30px rgba(255,56,96,.5),4px 4px 0 var(--ac);animation:pop .6s cubic-bezier(.34,1.56,.64,1) both}
+  @keyframes pop{from{transform:scale(.6) translateY(20px);opacity:0}to{transform:scale(1);opacity:1}}
+  .hs{color:var(--bl);font-size:.92rem;font-weight:700;margin-top:7px;position:relative;letter-spacing:1px}
+  .live{display:inline-flex;align-items:center;gap:6px;background:rgba(255,56,96,.12);border:1px solid var(--ac);color:var(--ac);padding:4px 12px;margin-top:10px;font-size:.76rem;font-weight:700;letter-spacing:2px}
+  .dot{width:7px;height:7px;background:var(--ac);border-radius:50%;animation:blink 1s infinite;display:inline-block}
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+  .cats{display:flex;gap:7px;flex-wrap:wrap;padding:12px 20px;border-bottom:1px solid var(--br)}
+  .cat{background:var(--sf);border:1.5px solid var(--br);color:var(--mu);padding:5px 13px;font-weight:700;font-size:.79rem;cursor:pointer;transition:.15s;border-radius:20px}
+  .cat:hover,.cat.on{background:var(--ac);color:#fff;border-color:var(--ac);transform:translateY(-2px)}
+  .container{max-width:1280px;margin:0 auto;padding:0 20px}
+  section{padding:22px 0 10px}
+  .stit{font-family:'Bangers',cursive;font-size:1.4rem;letter-spacing:2px;margin-bottom:14px;display:flex;align-items:center;gap:10px;border-left:4px solid var(--ac);padding-left:12px}
+  .bdg{font-family:'Comic Neue',cursive;font-weight:700;font-size:.66rem;padding:2px 8px;border-radius:3px}
+  .bdg.r{background:rgba(255,56,96,.18);color:var(--ac);border:1px solid rgba(255,56,96,.3)}
+  .bdg.b{background:rgba(0,180,216,.18);color:var(--bl);border:1px solid rgba(0,180,216,.3)}
+  .bdg.y{background:rgba(255,214,10,.18);color:var(--yl);border:1px solid rgba(255,214,10,.3)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}
+  .card{cursor:pointer;background:var(--sf);border:2px solid var(--br);transition:.2s;position:relative;overflow:hidden;border-radius:4px}
+  .card:hover{border-color:var(--ac);transform:translateY(-4px);box-shadow:0 8px 25px rgba(255,56,96,.25)}
+  .card:hover .clov{opacity:1}
+  .cov{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;background:var(--sf2)}
+  .covph{width:100%;aspect-ratio:3/4;display:flex;align-items:center;justify-content:center;font-size:4rem;background:linear-gradient(135deg,var(--sf2),var(--sf))}
+  .clov{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(0,0,0,.88) 100%);opacity:0;transition:.2s;display:flex;align-items:flex-end;padding:12px}
+  .clovbtn{width:100%;background:var(--ac);color:#fff;font-family:'Bangers',cursive;font-size:.92rem;letter-spacing:1px;padding:7px;text-align:center}
+  .ci{padding:9px}
+  .ct{font-family:'Bangers',cursive;font-size:.9rem;letter-spacing:1px;line-height:1.3}
+  .cm{font-size:.69rem;color:var(--mu);margin-top:3px;font-weight:700}
+  .ctag{display:inline-block;background:rgba(0,180,216,.13);color:var(--bl);border:1px solid rgba(0,180,216,.28);font-size:.62rem;font-weight:700;padding:1px 7px;margin-top:4px;border-radius:2px}
+  .favb{position:absolute;top:7px;right:7px;font-size:.95rem}
+  @keyframes shim{0%{background-position:-400px 0}100%{background-position:400px 0}}
+  .skc{background:var(--sf);border:2px solid var(--br);border-radius:4px;overflow:hidden}
+  .skcv{width:100%;aspect-ratio:3/4;background:linear-gradient(90deg,var(--sf) 25%,var(--sf2) 50%,var(--sf) 75%);background-size:800px 100%;animation:shim 1.5s infinite}
+  .skl{height:11px;margin:9px;border-radius:2px;background:linear-gradient(90deg,var(--sf) 25%,var(--sf2) 50%,var(--sf) 75%);background-size:800px 100%;animation:shim 1.5s infinite}
+  .skl.s{width:55%}
+  .modal{position:fixed;inset:0;background:rgba(0,0,0,.96);z-index:1000;display:none;flex-direction:column}
+  .modal.open{display:flex}
+  .mh{background:rgba(13,13,20,.98);border-bottom:2px solid var(--ac);display:flex;align-items:center;justify-content:space-between;padding:10px 18px;gap:10px;flex-shrink:0;flex-wrap:wrap}
+  .mt{font-family:'Bangers',cursive;color:var(--yl);font-size:1.2rem;letter-spacing:2px}
+  .ms{color:var(--mu);font-size:.72rem;font-weight:700;margin-top:2px}
+  .mbtns{display:flex;gap:6px;flex-wrap:wrap}
+  .mbtn{background:var(--sf2);border:1.5px solid var(--br);color:var(--tx);font-family:'Bangers',cursive;font-size:.86rem;padding:6px 12px;cursor:pointer;letter-spacing:1px;transition:.15s}
+  .mbtn:hover{border-color:var(--ac);color:var(--ac)}.mbtn.on{background:var(--yl);color:#0d0d0d;border-color:var(--yl)}
+  .mbtn.cl{border-color:var(--ac);color:var(--ac)}.mbtn.cl:hover{background:var(--ac);color:#fff}
+  .panel{flex:1;overflow-y:auto;display:none;flex-direction:column;align-items:center;padding:18px;gap:10px}
+  .panel.open{display:flex}
+  .icard{width:100%;max-width:700px;background:var(--sf);border:1.5px solid var(--br);padding:20px}
+  .irow{display:flex;gap:16px;flex-wrap:wrap}
+  .icv{width:165px;flex-shrink:0}.icv img{width:100%;display:block;border:2px solid var(--br)}
+  .idtl{flex:1;min-width:180px}
+  .itmg{font-family:'Bangers',cursive;font-size:1.85rem;letter-spacing:2px;color:var(--yl);line-height:1.1}
+  .itags{display:flex;flex-wrap:wrap;gap:5px;margin-top:9px}
+  .itag{background:rgba(255,56,96,.1);color:var(--ac);border:1px solid rgba(255,56,96,.2);font-size:.68rem;font-weight:700;padding:3px 10px;border-radius:12px}
+  .idesc{font-size:.82rem;color:var(--mu);line-height:1.75;margin-top:11px}
+  .chlist{width:100%;max-width:700px;display:flex;flex-direction:column;gap:5px}
+  .chi{display:flex;align-items:center;gap:10px;background:var(--sf);border:1.5px solid var(--br);padding:11px 14px;cursor:pointer;transition:.15s}
+  .chi:hover{border-color:var(--ac);background:var(--sf2)}
+  .chnum{font-family:'Bangers',cursive;color:var(--yl);font-size:.92rem;min-width:55px}
+  .chtit{flex:1;font-size:.82rem;color:var(--tx)}
+  .chsrc{font-size:.63rem;color:var(--bl);font-weight:700}
+  .chdt{font-size:.68rem;color:var(--mu)}
+  .chbtn{background:var(--bl);color:#fff;border:none;font-family:'Bangers',cursive;font-size:.8rem;padding:5px 12px;cursor:pointer;letter-spacing:1px;flex-shrink:0;transition:.15s}
+  .chbtn:hover{background:var(--ac)}
+  .rwrap{flex:1;overflow-y:auto;display:flex;flex-direction:column;align-items:center;background:#000}
+  .rimg{max-width:800px;width:100%;display:block}
+  .rnav{background:rgba(13,13,20,.97);border-top:2px solid var(--br);display:flex;align-items:center;justify-content:space-between;padding:10px 20px;gap:12px;flex-shrink:0}
+  .rpb{background:var(--sf2);border:2px solid var(--br);color:var(--tx);font-family:'Bangers',cursive;font-size:.92rem;padding:7px 17px;cursor:pointer;letter-spacing:1px;transition:.15s}
+  .rpb:hover:not(:disabled){border-color:var(--ac);color:var(--ac)}.rpb:disabled{opacity:.3;cursor:not-allowed}
+  .rpi{font-family:'Bangers',cursive;color:var(--mu);font-size:.9rem;letter-spacing:2px;text-align:center}
+  .rpi b{color:var(--yl)}
+  .ldmsg{text-align:center;padding:40px 20px;color:var(--mu);font-family:'Bangers',cursive;font-size:1.1rem;letter-spacing:2px}
+  .sp{display:inline-block;animation:spin 1s linear infinite;font-size:2rem}
+  @keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+  .errmsg{text-align:center;padding:28px 20px;color:var(--ac);font-weight:700;line-height:1.7}
+  .errmsg small{color:var(--mu);display:block;margin-top:5px;font-size:.78rem}
+  .pv{display:none}.pv.on{display:block}
+  .empty{text-align:center;padding:55px 20px;color:var(--mu)}
+  .empty .ei{font-size:3.5rem}
+  .empty .et{font-family:'Bangers',cursive;font-size:1.35rem;letter-spacing:2px;margin-top:10px;color:var(--tx)}
+  footer{background:var(--sf);border-top:2px solid var(--br);text-align:center;padding:17px;font-size:.75rem;color:var(--mu);margin-top:40px}
+  footer b{color:var(--yl);font-family:'Bangers',cursive;letter-spacing:2px}
+  @media(max-width:560px){.grid{grid-template-columns:repeat(auto-fill,minmax(125px,1fr));gap:10px}.hi{padding:8px 12px}.container{padding:0 12px}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hi">
+    <div class="logo" onclick="goHome()">
+      📚 TAUFIQ<span style="color:var(--ac)">KOMIK</span>
+      <small>APLIKASI BUATAN TAUFIQ · REAL-TIME</small>
+    </div>
+    <div class="sw">
+      <input type="text" id="sinput" placeholder="Cari manga... Doraemon, Naruto..." onkeydown="if(event.key==='Enter')doSearch()">
+      <button onclick="doSearch()">🔍</button>
+    </div>
+    <nav>
+      <button class="nb on" id="nHome" onclick="goHome()">🏠 HOME</button>
+      <button class="nb" id="nFav" onclick="goFav()">⭐ FAVORIT</button>
+    </nav>
+  </div>
+</header>
+
+<div class="hero" id="heroEl">
+  <div class="ht">APLIKASI BUATAN TAUFIQ</div>
+  <div class="hs">🎌 Ribuan Manga & Komik Anime Langsung dari Internet 🎌</div>
+  <div class="live"><span class="dot"></span> DATA REAL-TIME · MANGADEX API</div>
+</div>
+
+<div class="cats" id="catsEl">
+  <button class="cat on" onclick="loadCat('',this)">🌟 Semua</button>
+  <button class="cat" onclick="loadCat('Action',this)">⚡ Action</button>
+  <button class="cat" onclick="loadCat('Adventure',this)">🗺️ Adventure</button>
+  <button class="cat" onclick="loadCat('Comedy',this)">😂 Comedy</button>
+  <button class="cat" onclick="loadCat('Fantasy',this)">✨ Fantasy</button>
+  <button class="cat" onclick="loadCat('Sci-Fi',this)">🚀 Sci-Fi</button>
+  <button class="cat" onclick="loadCat('Mecha',this)">🤖 Mecha</button>
+  <button class="cat" onclick="loadCat('Romance',this)">💕 Romance</button>
+  <button class="cat" onclick="loadCat('Sports',this)">⚽ Sports</button>
+  <button class="cat" onclick="loadCat('Horror',this)">👻 Horror</button>
+</div>
+
+<div id="pHome" class="pv on">
+  <div class="container">
+    <section>
+      <div class="stit">🔥 POPULER <span class="bdg r">HOT</span></div>
+      <div class="grid" id="gPop"></div>
+    </section>
+    <section>
+      <div class="stit">🆕 TERBARU <span class="bdg b">UPDATE</span></div>
+      <div class="grid" id="gNew"></div>
+    </section>
+    <section>
+      <div class="stit">🎌 ADAPTASI ANIME <span class="bdg y">PILIHAN</span></div>
+      <div class="grid" id="gAnime"></div>
+    </section>
+  </div>
+</div>
+
+<div id="pSearch" class="pv">
+  <div class="container">
+    <section>
+      <div class="stit" id="stSearch">🔍 HASIL PENCARIAN</div>
+      <div class="grid" id="gSearch"></div>
+    </section>
+  </div>
+</div>
+
+<div id="pFav" class="pv">
+  <div class="container">
+    <section>
+      <div class="stit">⭐ FAVORIT SAYA <span class="bdg y">LOKAL</span></div>
+      <div id="favEmpty" class="empty" style="display:none">
+        <div class="ei">😢</div>
+        <div class="et">BELUM ADA FAVORIT</div>
+        <p style="margin-top:8px;font-size:.87rem">Buka manga lalu tekan ⭐ FAVORIT</p>
+      </div>
+      <div class="grid" id="gFav"></div>
+    </section>
+  </div>
+</div>
+
+<div class="modal" id="modal">
+  <div class="mh">
+    <div>
+      <div class="mt" id="mTitle">Memuat...</div>
+      <div class="ms" id="mSub">Mengambil data...</div>
+    </div>
+    <div class="mbtns">
+      <button class="mbtn" id="favMbtn" onclick="toggleFav()">☆ FAVORIT</button>
+      <button class="mbtn" id="infoMbtn" onclick="togglePanel('info')">ℹ️ INFO</button>
+      <button class="mbtn" id="chapMbtn" onclick="togglePanel('chap')">📖 CHAPTER</button>
+      <button class="mbtn cl" onclick="closeModal()">✕ TUTUP</button>
+    </div>
+  </div>
+  <div class="panel" id="pInfo">
+    <div class="icard" id="iCard"><div class="ldmsg"><span class="sp">⟳</span></div></div>
+  </div>
+  <div class="panel" id="pChap">
+    <div class="chlist" id="chList"><div class="ldmsg"><span class="sp">⟳</span> Memuat chapter...</div></div>
+  </div>
+  <div class="rwrap" id="rwrap">
+    <div class="ldmsg" style="margin:auto">
+      <div style="font-size:3rem">📖</div>
+      <div style="margin-top:12px">PILIH CHAPTER UNTUK MEMBACA</div>
+      <div style="font-size:.85rem;font-family:'Comic Neue',cursive;font-weight:400;color:var(--mu);margin-top:8px">Klik tombol 📖 CHAPTER di atas</div>
+    </div>
+  </div>
+  <div class="rnav" id="rnav" style="display:none">
+    <button class="rpb" id="pbPrev" onclick="chPage(-1)">◀ PREV</button>
+    <div class="rpi">Hal <b id="piCur">-</b> / <b id="piTot">-</b></div>
+    <button class="rpb" id="pbNext" onclick="chPage(1)">NEXT ▶</button>
+  </div>
+</div>
+
+<footer>📚 <b>TAUFIQ KOMIK</b> — Real-time dari <b>MangaDex API</b> · © 2024 <b>APLIKASI BUATAN TAUFIQ</b></footer>
+
+<script>
+// Pakai /api/manga sebagai proxy — jalan di Netlify hosting
+const API = (path) => `/api/manga?path=${encodeURIComponent(path)}`;
+const CDN = 'https://uploads.mangadex.org/covers';
+
+const S = {
+  manga:null, chapters:[], pages:[], pageIdx:0, panel:null,
+  favs: JSON.parse(localStorage.getItem('tq_fav')||'[]')
+};
+
+const getTitle = m=>{const t=m?.attributes?.title||{};return t.id||t.en||t['ja-ro']||Object.values(t)[0]||'Unknown'};
+const getDesc  = m=>{const d=m?.attributes?.description||{};return d.id||d.en||Object.values(d)[0]||'Tidak ada deskripsi.'};
+const getCover = m=>{const r=m?.relationships?.find(x=>x.type==='cover_art');return r?.attributes?.fileName?`${CDN}/${m.id}/${r.attributes.fileName}.512.jpg`:null};
+const getTags  = m=>(m?.attributes?.tags||[]).map(t=>t.attributes?.name?.en).filter(Boolean).slice(0,5);
+const isFav    = id=>S.favs.some(f=>f.id===id);
+const saveFavs = ()=>localStorage.setItem('tq_fav',JSON.stringify(S.favs));
+const skel     = (n=12)=>Array(n).fill(0).map(()=>`<div class="skc"><div class="skcv"></div><div class="skl"></div><div class="skl s"></div></div>`).join('');
+
+async function apiFetch(path) {
+  const r = await fetch(API(path), {signal: AbortSignal.timeout(15000)});
+  if (!r.ok) throw new Error(`HTTP ${r.status}`);
+  return r.json();
+}
+
+function mkCard(m) {
+  const title=getTitle(m),cover=getCover(m),tags=getTags(m);
+  const short=title.length>38?title.slice(0,38)+'…':title;
+  const status=(m?.attributes?.status||'').toUpperCase();
+  return `
+    <div class="card" onclick="openManga('${m.id}')">
+      ${cover?`<img class="cov" src="${cover}" alt="${short}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`:'' }
+      <div class="covph" ${cover?'style="display:none"':''}>📚</div>
+      <div class="clov"><div class="clovbtn">📖 BACA</div></div>
+      ${isFav(m.id)?'<div class="favb">⭐</div>':''}
+      <div class="ci">
+        <div class="ct">${short}</div>
+        <div class="cm">${status}</div>
+        ${tags[0]?`<div class="ctag">${tags[0]}</div>`:''}
+      </div>
+    </div>`;
+}
+
+async function loadSec(el, path) {
+  el.innerHTML = skel();
+  try {
+    const d = await apiFetch(path);
+    el.innerHTML = d.data?.length ? d.data.map(mkCard).join('') : '<div class="errmsg">Tidak ada hasil.</div>';
+  } catch(e) {
+    el.innerHTML = `<div class="errmsg">⚠️ Gagal memuat.<small>${e.message}</small></div>`;
+  }
+}
+
+function loadHome() {
+  const base = `/manga?includes[]=cover_art&contentRating[]=safe&contentRating[]=suggestive&limit=18`;
+  loadSec(document.getElementById('gPop'),   base+'&order[followedCount]=desc');
+  loadSec(document.getElementById('gNew'),   base+'&order[updatedAt]=desc');
+  loadSec(document.getElementById('gAnime'), base+'&includedTags[]=a3c67850-4684-404e-9b7f-c69850ee5da6&order[rating]=desc');
+}
+
+async function doSearch() {
+  const q=document.getElementById('sinput').value.trim();
+  if(!q) return;
+  showPV('pSearch'); sNav('');
+  document.getElementById('stSearch').innerHTML=`🔍 HASIL: "<em style="color:var(--yl)">${q}</em>" <span class="bdg b">LIVE</span>`;
+  const el=document.getElementById('gSearch');
+  el.innerHTML=skel();
+  try {
+    const d=await apiFetch(`/manga?title=${encodeURIComponent(q)}&includes[]=cover_art&contentRating[]=safe&contentRating[]=suggestive&limit=24&order[relevance]=desc`);
+    el.innerHTML=d.data?.length?d.data.map(mkCard).join(''):`<div class="errmsg">😔 Tidak ditemukan "${q}"</div>`;
+  } catch(e) {
+    el.innerHTML=`<div class="errmsg">⚠️ Gagal mencari.<small>${e.message}</small></div>`;
+  }
+}
+
+async function loadCat(tagName, el) {
+  document.querySelectorAll('.cat').forEach(c=>c.classList.remove('on'));
+  el.classList.add('on');
+  showPV('pHome'); sNav('nHome');
+  const grid=document.getElementById('gPop');
+  grid.innerHTML=skel();
+  try {
+    let path=`/manga?limit=18&includes[]=cover_art&contentRating[]=safe&contentRating[]=suggestive&order[followedCount]=desc`;
+    if(tagName){
+      const td=await apiFetch(`/manga/tag`);
+      const tag=td.data?.find(t=>t.attributes?.name?.en?.toLowerCase()===tagName.toLowerCase());
+      if(tag) path+=`&includedTags[]=${tag.id}`;
+    }
+    const d=await apiFetch(path);
+    grid.innerHTML=d.data?.length?d.data.map(mkCard).join(''):'<div class="errmsg">Tidak ada hasil.</div>';
+  } catch(e) {
+    grid.innerHTML=`<div class="errmsg">⚠️ Gagal.<small>${e.message}</small></div>`;
+  }
+}
+
+async function openManga(id) {
+  document.getElementById('modal').classList.add('open');
+  document.getElementById('mTitle').textContent='Memuat...';
+  document.getElementById('mSub').textContent='Mengambil data...';
+  document.getElementById('rnav').style.display='none';
+  S.panel=null; S.pages=[]; S.pageIdx=0;
+  document.getElementById('pInfo').classList.remove('open');
+  document.getElementById('pChap').classList.remove('open');
+  document.getElementById('rwrap').style.display='flex';
+  document.getElementById('rwrap').innerHTML=`<div class="ldmsg" style="margin:auto"><span class="sp" style="font-size:2.5rem">⟳</span><div style="margin-top:12px">MEMUAT DATA MANGA...</div></div>`;
+  document.getElementById('iCard').innerHTML=`<div class="ldmsg"><span class="sp">⟳</span></div>`;
+  document.getElementById('chList').innerHTML=`<div class="ldmsg"><span class="sp">⟳</span> Memuat chapter...</div>`;
+  try {
+    const d=await apiFetch(`/manga/${id}?includes[]=cover_art&includes[]=author`);
+    S.manga=d.data;
+    const title=getTitle(d.data);
+    document.getElementById('mTitle').textContent=title;
+    document.getElementById('mSub').textContent=getTags(d.data).slice(0,3).join(' · ')||'Manga';
+    updateFavBtn(); buildInfo(d.data); loadChapters(id);
+    document.getElementById('rwrap').innerHTML=`
+      <div class="ldmsg" style="margin:auto">
+        <div style="font-size:3rem">📖</div>
+        <div style="margin-top:12px;color:var(--yl)">${title}</div>
+        <div style="margin-top:10px;font-family:'Comic Neue',cursive;font-size:.87rem;font-weight:400;color:var(--mu)">
+          Pilih <b style="color:var(--ac)">CHAPTER</b> untuk mulai membaca
+        </div>
+      </div>`;
+  } catch(e) {
+    document.getElementById('rwrap').innerHTML=`<div class="errmsg" style="margin:auto">⚠️ Gagal.<small>${e.message}</small></div>`;
+  }
+}
+
+function buildInfo(m) {
+  const cover=getCover(m),title=getTitle(m),desc=getDesc(m),tags=getTags(m);
+  document.getElementById('iCard').innerHTML=`
+    <div class="irow">
+      <div class="icv">${cover?`<img src="${cover}" alt="${title}">`:''}</div>
+      <div class="idtl">
+        <div class="itmg">${title}</div>
+        <div style="font-size:.78rem;color:var(--tx);margin-top:8px">Status: <b>${(m.attributes?.status||'').toUpperCase()}</b></div>
+        <div class="itags">${tags.map(t=>`<span class="itag">${t}</span>`).join('')}</div>
+        <div class="idesc">${desc.slice(0,430)}${desc.length>430?'…':''}</div>
+      </div>
+    </div>`;
+}
+
+async function loadChapters(id) {
+  try {
+    const d=await apiFetch(`/manga/${id}/feed?limit=100&translatedLanguage[]=id&translatedLanguage[]=en&order[chapter]=desc&contentRating[]=safe&contentRating[]=suggestive`);
+    S.chapters=d.data||[];
+    if(!S.chapters.length){document.getElementById('chList').innerHTML='<div class="errmsg">😔 Belum ada chapter Indonesia/Inggris.</div>';return;}
+    document.getElementById('chList').innerHTML=S.chapters.map(ch=>{
+      const num=ch.attributes?.chapter||'?',tit=ch.attributes?.title||'';
+      const lang=(ch.attributes?.translatedLanguage||'en').toUpperCase();
+      const date=ch.attributes?.publishAt?new Date(ch.attributes.publishAt).toLocaleDateString('id-ID'):'';
+      const grp=ch.relationships?.find(r=>r.type==='scanlation_group')?.attributes?.name||'';
+      return `<div class="chi">
+        <div class="chnum">Ch.${num}</div>
+        <div class="chtit">${tit||'Chapter '+num}<div class="chsrc">[${lang}] ${grp}</div></div>
+        <div class="chdt">${date}</div>
+        <button class="chbtn" onclick="readChap('${ch.id}','${num}')">BACA</button>
+      </div>`;
+    }).join('');
+  } catch(e) {
+    document.getElementById('chList').innerHTML=`<div class="errmsg">⚠️ Gagal memuat chapter.<small>${e.message}</small></div>`;
+  }
+}
+
+async function readChap(chapId,chNum) {
+  S.panel=null;
+  document.getElementById('pInfo').classList.remove('open');
+  document.getElementById('pChap').classList.remove('open');
+  document.getElementById('rwrap').style.display='flex';
+  document.getElementById('rnav').style.display='none';
+  S.pages=[]; S.pageIdx=0;
+  document.getElementById('rwrap').innerHTML=`<div class="ldmsg" style="margin:auto"><span class="sp" style="font-size:2.5rem">⟳</span><div style="margin-top:12px">MEMUAT CH.${chNum}...</div></div>`;
+  try {
+    const d=await apiFetch(`/at-home/server/${chapId}`);
+    const imgs=(d.chapter?.data||[]).map(p=>`${d.baseUrl}/data/${d.chapter.hash}/${p}`);
+    if(!imgs.length) throw new Error('Halaman kosong');
+    S.pages=imgs; S.pageIdx=0;
+    document.getElementById('mSub').textContent=`Chapter ${chNum} · ${imgs.length} halaman`;
+    renderPage();
+    document.getElementById('rnav').style.display='flex';
+  } catch(e) {
+    document.getElementById('rwrap').innerHTML=`<div class="errmsg" style="margin:auto">⚠️ Gagal memuat halaman.<small>${e.message}</small></div>`;
+  }
+}
+
+function renderPage() {
+  const url=S.pages[S.pageIdx];
+  document.getElementById('piCur').textContent=S.pageIdx+1;
+  document.getElementById('piTot').textContent=S.pages.length;
+  document.getElementById('pbPrev').disabled=S.pageIdx===0;
+  document.getElementById('pbNext').disabled=S.pageIdx===S.pages.length-1;
+  document.getElementById('rwrap').innerHTML=`<img class="rimg" src="${url}" alt="Hal ${S.pageIdx+1}">`;
+  document.getElementById('rwrap').scrollTop=0;
+}
+
+function chPage(d){const ni=S.pageIdx+d;if(ni<0||ni>=S.pages.length)return;S.pageIdx=ni;renderPage();}
+
+function togglePanel(p) {
+  if(S.panel===p){
+    S.panel=null;
+    document.getElementById('pInfo').classList.remove('open');
+    document.getElementById('pChap').classList.remove('open');
+    document.getElementById('rwrap').style.display='flex';
+    if(S.pages.length) document.getElementById('rnav').style.display='flex';
+  } else {
+    S.panel=p;
+    document.getElementById('rwrap').style.display='none';
+    document.getElementById('rnav').style.display='none';
+    document.getElementById('pInfo').classList.toggle('open',p==='info');
+    document.getElementById('pChap').classList.toggle('open',p==='chap');
+  }
+}
+
+function updateFavBtn(){
+  const on=S.manga&&isFav(S.manga.id);
+  const b=document.getElementById('favMbtn');
+  b.textContent=on?'★ FAVORIT':'☆ FAVORIT';
+  b.classList.toggle('on',on);
+}
+function toggleFav(){
+  if(!S.manga)return;
+  const id=S.manga.id,idx=S.favs.findIndex(f=>f.id===id);
+  idx>=0?S.favs.splice(idx,1):S.favs.push({id,title:getTitle(S.manga),cover:getCover(S.manga),tags:getTags(S.manga),status:S.manga.attributes?.status||''});
+  saveFavs();updateFavBtn();
+}
+function goFav(){
+  showPV('pFav');sNav('nFav');
+  const grid=document.getElementById('gFav'),empty=document.getElementById('favEmpty');
+  grid.innerHTML='';
+  if(!S.favs.length){empty.style.display='block';return;}
+  empty.style.display='none';
+  S.favs.forEach(fav=>{
+    const d=document.createElement('div');d.className='card';d.onclick=()=>openManga(fav.id);
+    d.innerHTML=`${fav.cover?`<img class="cov" src="${fav.cover}" loading="lazy">`:'<div class="covph">📚</div>'}
+      <div class="clov"><div class="clovbtn">📖 BACA</div></div><div class="favb">⭐</div>
+      <div class="ci"><div class="ct">${fav.title.slice(0,38)}</div><div class="cm">${(fav.status||'').toUpperCase()}</div>${fav.tags[0]?`<div class="ctag">${fav.tags[0]}</div>`:''}</div>`;
+    grid.appendChild(d);
+  });
+}
+
+function showPV(id){document.querySelectorAll('.pv').forEach(p=>p.classList.remove('on'));document.getElementById(id).classList.add('on');const h=id==='pHome';document.getElementById('heroEl').style.display=h?'block':'none';document.getElementById('catsEl').style.display=h?'flex':'none';}
+function sNav(id){document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));if(id)document.getElementById(id)?.classList.add('on');}
+function goHome(){showPV('pHome');sNav('nHome');}
+function closeModal(){document.getElementById('modal').classList.remove('open');}
+
+document.addEventListener('keydown',e=>{
+  if(!document.getElementById('modal').classList.contains('open'))return;
+  if(S.panel||!S.pages.length)return;
+  if(e.key==='ArrowRight'||e.key==='ArrowDown')chPage(1);
+  if(e.key==='ArrowLeft'||e.key==='ArrowUp')chPage(-1);
+  if(e.key==='Escape')closeModal();
+});
+
+loadHome();
+</script>
+</body>
+</html>

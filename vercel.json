@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/api/manga", "destination": "/api/manga" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}
